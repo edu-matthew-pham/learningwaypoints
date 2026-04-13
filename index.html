@@ -340,6 +340,20 @@
 .nav-links a:hover {
   color: var(--ink);
 }
+
+.tool-card-soon {
+  opacity: 0;
+  animation: fadeUp 0.5s ease 1.0s forwards;
+}
+
+@keyframes fadeUpDimmed {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 0.55; transform: translateY(0); }
+}
+
+.tool-card-soon {
+  animation-name: fadeUpDimmed;
+}
   </style>
 </head>
 <body>
@@ -414,6 +428,18 @@
       <div class="tool-desc">Keep every class moving forward together. Manage pace differences by adjusting challenge and support without breaking the shared conceptual path.</div>
       <div class="tool-link">Open Waypoints Planner</div>
     </a>
+
+    <a class="tool-card tool-card-soon" style="pointer-events:none; filter: grayscale(0.35); border-style: dashed;">
+      <div>
+        <div class="tool-icon">◉</div>
+        <span class="tool-status status-preview">Coming Soon</span>
+      </div>
+      <div class="tool-name">Waypoints Signal</div>
+      <div class="tool-desc">A real-time confidence check across your waypoints. Students signal where they are before, during, or after a lesson so you can see where each class stands and decide what comes next.</div>
+      <div class="tool-link">Coming Soon</div>
+    </a>
+
+
 
   </div>
 </section>
