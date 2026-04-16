@@ -46,7 +46,7 @@
       background: rgba(247,244,239,0.85);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
-      gap: 32px; 
+      gap: 32px;
     }
 
     .nav-logo {
@@ -56,6 +56,7 @@
       letter-spacing: -0.02em;
       color: var(--ink);
       text-decoration: none;
+      flex-shrink: 0;
     }
 
     .nav-tag {
@@ -63,6 +64,87 @@
       color: var(--muted);
       letter-spacing: 0.08em;
       text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+    }
+
+    /* Mobile hamburger */
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      color: var(--ink);
+      margin-left: auto;
+    }
+
+    .nav-mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; right: 0;
+      width: 280px;
+      height: 100%;
+      background: var(--bg);
+      border-left: 1px solid var(--border);
+      z-index: 200;
+      padding: 24px;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: -8px 0 40px rgba(0,0,0,0.1);
+    }
+
+    .nav-mobile-menu.open {
+      display: flex;
+    }
+
+    .nav-mobile-menu a {
+      font-size: 14px;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-mobile-menu a:hover {
+      color: var(--ink);
+    }
+
+    .nav-mobile-close {
+      align-self: flex-end;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 20px;
+      color: var(--muted);
+      padding: 4px;
+      margin-bottom: 12px;
+    }
+
+    .nav-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.3);
+      z-index: 150;
+    }
+
+    .nav-backdrop.open {
+      display: block;
     }
 
     /* ── Hero ── */
@@ -139,6 +221,26 @@
       display: inline-block;
     }
 
+    .hero-cta {
+      display: inline-block;
+      margin-top: 32px;
+      padding: 14px 28px;
+      border: 1px solid var(--ink);
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.5s forwards;
+    }
+
+    .hero-cta:hover {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
     /* ── Tools section ── */
     .tools {
       position: relative;
@@ -201,6 +303,7 @@
     .tool-card:nth-child(2) { animation-delay: 0.7s; }
     .tool-card:nth-child(3) { animation-delay: 0.8s; }
     .tool-card:nth-child(4) { animation-delay: 0.9s; }
+    .tool-card:nth-child(5) { animation-delay: 1.0s; }
 
     .tool-icon {
       font-size: 24px;
@@ -255,6 +358,16 @@
       transform: translateX(4px);
     }
 
+    /* ── Divider line ── */
+    .rule {
+      position: relative;
+      z-index: 1;
+      height: 1px;
+      background: var(--border);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
     /* ── Footer ── */
     footer {
       position: relative;
@@ -281,36 +394,6 @@
 
     footer a:hover { color: var(--ink); }
 
-    /* ── Divider line ── */
-    .rule {
-      position: relative;
-      z-index: 1;
-      height: 1px;
-      background: var(--border);
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .hero-cta {
-      display: inline-block;
-      margin-top: 32px;
-      padding: 14px 28px;
-      border: 1px solid var(--ink);
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--ink);
-      text-decoration: none;
-      transition: background 0.2s, color 0.2s;
-      opacity: 0;
-      animation: fadeUp 0.6s ease 0.5s forwards;
-    }
-
-    .hero-cta:hover {
-      background: var(--ink);
-      color: var(--bg);
-    }
-
     /* ── Animations ── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(16px); }
@@ -319,41 +402,45 @@
 
     /* ── Responsive ── */
     @media (max-width: 768px) {
-      nav { padding: 16px 24px; }
-      .hero { padding: 100px 24px 60px; }
-      .tools { padding: 60px 24px 80px; }
-      footer { padding: 24px; }
-      .tool-grid { grid-template-columns: 1fr; }
+      nav {
+        padding: 16px 20px;
+        gap: 12px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-hamburger {
+        display: block;
+      }
+
+      .hero {
+        padding: 100px 20px 60px;
+      }
+
+      .hero-desc {
+        margin-bottom: 36px;
+      }
+
+      .tools {
+        padding: 60px 20px 80px;
+      }
+
+      .tool-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tool-card {
+        padding: 24px;
+      }
+
+      footer {
+        padding: 24px 20px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
-
-.nav-links {
-  display: flex;
-  gap: 20px;
-}
-
-.nav-links a {
-  font-size: 12px;
-  color: var(--muted);
-  text-decoration: none;
-}
-
-.nav-links a:hover {
-  color: var(--ink);
-}
-
-.tool-card-soon {
-  opacity: 0;
-  animation: fadeUp 0.5s ease 1.0s forwards;
-}
-
-@keyframes fadeUpDimmed {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 0.55; transform: translateY(0); }
-}
-
-.tool-card-soon {
-  animation-name: fadeUpDimmed;
-}
   </style>
 </head>
 <body>
@@ -361,14 +448,31 @@
 <nav>
   <a class="nav-logo" href="/">Learning Waypoints</a>
   <div class="nav-links">
-  <a href="https://acaraprogressions.learningwaypoints.com" target="_blank">ACARA Progressions</a>
-  <a href="https://mypframework.learningwaypoints.com" target="_blank">MYP Framework</a>
-  <a href="https://waypointsplanner.learningwaypoints.com" target="_blank">Waypoints Planner</a>
-  <a href="https://signal.learningwaypoints.com" target="_blank">Waypoints Signal</a>
-  <a href="https://topicexplorer.learningwaypoints.com" target="_blank">Topic Explorer</a>
+    <a href="https://acaraprogressions.learningwaypoints.com">ACARA Progressions</a>
+    <a href="https://mypframework.learningwaypoints.com">MYP Framework</a>
+    <a href="https://waypointsplanner.learningwaypoints.com">Waypoints Planner</a>
+    <a href="https://signal.learningwaypoints.com">Waypoints Signal</a>
+    <a href="https://topicexplorer.learningwaypoints.com">Topic Explorer</a>
   </div>
-  
+  <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Open menu">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  </button>
 </nav>
+
+<!-- Mobile menu -->
+<div class="nav-backdrop" id="nav-backdrop" onclick="closeMenu()"></div>
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+  <button class="nav-mobile-close" onclick="closeMenu()" aria-label="Close menu">✕</button>
+  <a href="https://acaraprogressions.learningwaypoints.com" onclick="closeMenu()">ACARA Progressions</a>
+  <a href="https://mypframework.learningwaypoints.com" onclick="closeMenu()">MYP Framework</a>
+  <a href="https://waypointsplanner.learningwaypoints.com" onclick="closeMenu()">Waypoints Planner</a>
+  <a href="https://signal.learningwaypoints.com" onclick="closeMenu()">Waypoints Signal</a>
+  <a href="https://topicexplorer.learningwaypoints.com" onclick="closeMenu()">Topic Explorer</a>
+</div>
 
 <section class="hero">
   <div class="hero-eyebrow">Open curriculum tools for Australian educators</div>
@@ -390,7 +494,7 @@
 
   <div class="tool-grid">
 
-    <a class="tool-card" href="https://acaraprogressions.learningwaypoints.com" target="_blank">
+    <a class="tool-card" href="https://acaraprogressions.learningwaypoints.com">
       <div>
         <div class="tool-icon">◎</div>
         <span class="tool-status status-live">Live</span>
@@ -400,7 +504,7 @@
       <div class="tool-link">Open ACARA Progressions</div>
     </a>
 
-    <a class="tool-card" href="https://mypframework.learningwaypoints.com" target="_blank">
+    <a class="tool-card" href="https://mypframework.learningwaypoints.com">
       <div>
         <div class="tool-icon">◈</div>
         <span class="tool-status status-live">Live</span>
@@ -410,7 +514,7 @@
       <div class="tool-link">Open MYP Framework Explorer</div>
     </a>
 
-    <a class="tool-card" href="https://waypointsplanner.learningwaypoints.com" target="_blank">
+    <a class="tool-card" href="https://waypointsplanner.learningwaypoints.com">
       <div>
         <div class="tool-icon">⬡</div>
         <span class="tool-status status-beta">Beta</span>
@@ -420,7 +524,7 @@
       <div class="tool-link">Open Waypoints Planner</div>
     </a>
 
-    <a class="tool-card" href="https://signal.learningwaypoints.com/teacher" target="_blank">
+    <a class="tool-card" href="https://signal.learningwaypoints.com/teacher">
       <div>
         <div class="tool-icon">◉</div>
         <span class="tool-status status-beta">Beta</span>
@@ -430,7 +534,7 @@
       <div class="tool-link">Open Waypoints Signal</div>
     </a>
 
-    <a class="tool-card" href="https://topicexplorer.learningwaypoints.com" target="_blank">
+    <a class="tool-card" href="https://topicexplorer.learningwaypoints.com">
       <div>
         <div class="tool-icon">✦</div>
         <span class="tool-status status-preview">Preview</span>
@@ -440,16 +544,23 @@
       <div class="tool-link">Open Topic Explorer</div>
     </a>
 
-    
-
-
-
   </div>
 </section>
 
 <footer>
   <p>© 2026 Learning Waypoints</p>
 </footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('nav-mobile-menu').classList.add('open');
+    document.getElementById('nav-backdrop').classList.add('open');
+  }
+  function closeMenu() {
+    document.getElementById('nav-mobile-menu').classList.remove('open');
+    document.getElementById('nav-backdrop').classList.remove('open');
+  }
+</script>
 
 </body>
 </html>
