@@ -105,6 +105,7 @@
     .tool-status { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 12px; align-self: flex-start; }
     .status-live        { background: rgba(76,175,80,0.12);  color: #2e7d32; }
     .status-beta        { background: rgba(255,152,0,0.12);   color: #e65100; }
+    .status-preview     { background: rgba(59,130,246,0.12);  color: #1d4ed8; }
     .status-coming-soon { background: rgba(26,24,20,0.06);    color: var(--muted); }
 
     .tool-name { font-family: 'Libre Baskerville', serif; font-size: 20px; font-weight: 700; line-height: 1.2; }
@@ -147,6 +148,7 @@
     <a href="https://planner.learningwaypoints.com">Waypoints Planner</a>
     <a href="https://signal.learningwaypoints.com">Waypoints Signal</a>
     <a href="https://topic.learningwaypoints.com">Topic Explorer</a>
+    <a href="https://insight.learningwaypoints.com">Waypoints Insight</a>
   </div>
   <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Open menu">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -165,6 +167,7 @@
   <a href="https://planner.learningwaypoints.com" onclick="closeMenu()">Waypoints Planner</a>
   <a href="https://signal.learningwaypoints.com" onclick="closeMenu()">Waypoints Signal</a>
   <a href="https://topic.learningwaypoints.com" onclick="closeMenu()">Topic Explorer</a>
+  <a href="https://insight.learningwaypoints.com" onclick="closeMenu()">Waypoints Insight</a>
 </div>
 
 <section class="hero">
@@ -237,15 +240,15 @@
       <div class="tool-link">Open Topic Explorer</div>
     </a>
 
-    <div class="tool-card coming-soon">
+    <a class="tool-card" href="https://insight.learningwaypoints.com">
       <div>
         <div class="tool-icon">◐</div>
-        <span class="tool-status status-coming-soon">Coming soon</span>
+        <span class="tool-status status-preview">Preview</span>
       </div>
       <div class="tool-name">Waypoints Insight</div>
-      <div class="tool-desc">Classify and surface student thinking after class. Paste responses from any source — AI coaching transcripts, written answers, interactive activity results — and see what students understood, what they misunderstood, and what deserves the whole class's attention.</div>
-      <div class="tool-link-muted">In development</div>
-    </div>
+      <div class="tool-desc">Classify and surface student thinking after class. Export a session summary from Topic Explorer, optionally link an ACARA standard, and see what students understood, what they misunderstood, and what deserves the whole class's attention.</div>
+      <div class="tool-link">Open Waypoints Insight</div>
+    </a>
 
   </div>
 </section>
