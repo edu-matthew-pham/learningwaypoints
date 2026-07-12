@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Getting Started — Learning Waypoints</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f4ef;
+    --ink: #1a1814;
+    --muted: #7a7570;
+    --border: rgba(26,24,20,0.1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0;
+  }
+
+  .page { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; padding: 96px 24px 120px; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 20px 48px;
+    display: flex; align-items: center;
+    background: rgba(247,244,239,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    gap: 32px;
+  }
+  .nav-logo { font-family: 'Libre Baskerville', serif; font-size: 15px; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); text-decoration: none; flex-shrink: 0; }
+  .nav-links { display: flex; gap: 20px; }
+  .nav-links a { font-size: 12px; color: var(--muted); text-decoration: none; white-space: nowrap; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; color: var(--ink); margin-left: auto; }
+  .nav-mobile-menu {
+    display: none; position: fixed; top: 0; right: 0; width: 280px; height: 100%;
+    background: var(--bg); border-left: 1px solid var(--border); z-index: 200;
+    padding: 24px; flex-direction: column; gap: 8px; box-shadow: -8px 0 40px rgba(0,0,0,0.1);
+  }
+  .nav-mobile-menu.open { display: flex; }
+  .nav-mobile-menu a { font-size: 14px; color: var(--muted); text-decoration: none; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .nav-mobile-menu a:hover { color: var(--ink); }
+  .nav-mobile-close { align-self: flex-end; background: none; border: none; cursor: pointer; font-size: 20px; color: var(--muted); padding: 4px; margin-bottom: 12px; }
+  .nav-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 150; }
+  .nav-backdrop.open { display: block; }
+
+  .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+  h1 { font-family: 'Libre Baskerville', serif; font-size: clamp(34px, 5vw, 52px); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 24px; }
+  h1 em { font-style: italic; font-weight: 400; }
+  .lede { font-size: clamp(15px, 1.8vw, 18px); line-height: 1.75; color: var(--muted); font-weight: 300; max-width: 620px; margin-bottom: 20px; }
+
+  .hero-tag { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); border: 1px solid var(--border); border-radius: 20px; padding: 6px 14px; margin-bottom: 48px; }
+  .hero-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #4caf50; display: inline-block; }
+
+  h2 { font-family: 'Libre Baskerville', serif; font-size: clamp(22px, 3vw, 30px); font-weight: 700; line-height: 1.25; margin-bottom: 12px; }
+  .section-note { font-size: 14px; line-height: 1.7; color: var(--muted); font-weight: 300; max-width: 620px; margin-bottom: 32px; }
+  .section-note strong { color: var(--ink); font-weight: 500; }
+  .section-note a { color: var(--ink); font-weight: 500; }
+
+  svg { width: 100%; height: auto; display: block; }
+  .diagram { margin-bottom: 72px; }
+
+  .zone { margin-bottom: 64px; }
+  .zone-kicker { display: flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .zone-kicker::before { content: ''; width: 6px; height: 6px; border-radius: 50%; border: 2px solid var(--muted); display: inline-block; }
+  .zone.start .zone-kicker::before { border-color: #4caf50; }
+
+  .zone-frame { font-size: 14px; line-height: 1.7; color: var(--muted); font-weight: 300; max-width: 620px; margin-bottom: 28px; }
+  .zone-frame a { color: var(--ink); font-weight: 500; white-space: nowrap; }
+
+  .tool-note { border-left: 2px solid var(--border); padding: 4px 0 4px 24px; margin-bottom: 28px; }
+  .tool-note h3 { font-family: 'Libre Baskerville', serif; font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+  .tool-note h3 .icon { font-size: 15px; margin-right: 8px; }
+  .tool-note p { font-size: 14px; line-height: 1.75; color: var(--muted); max-width: 600px; margin-bottom: 8px; }
+  .tool-note .try { font-size: 13px; color: var(--muted); margin-top: 12px; line-height: 1.6; }
+  .tool-note .try-btn { display: inline-block; font-size: 12px; font-weight: 500; color: var(--ink); border: 1px solid var(--border); border-radius: 20px; padding: 6px 16px; text-decoration: none; margin-top: 8px; transition: background 0.2s, border-color 0.2s; }
+  .tool-note .try-btn:hover { background: rgba(26,24,20,0.06); border-color: rgba(26,24,20,0.25); }
+  .tool-note .try-btn::after { content: ' →'; }
+
+  .workflow {
+    border: 1px solid var(--border); border-radius: 16px;
+    background: rgba(255,255,255,0.5); padding: 36px 40px;
+    margin-bottom: 88px;
+  }
+  .workflow h2 { font-size: 22px; margin-bottom: 14px; }
+  .workflow p { font-size: 14px; line-height: 1.75; color: var(--muted); max-width: 640px; margin-bottom: 12px; }
+  .workflow p:last-child { margin-bottom: 0; }
+  .workflow strong { color: var(--ink); font-weight: 500; }
+  .workflow-steps { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 20px 0 24px; }
+  .wf-step { font-size: 13px; padding: 8px 16px; border: 1px solid var(--border); border-radius: 20px; background: rgba(255,255,255,0.6); white-space: nowrap; }
+  .wf-arrow { color: var(--muted); font-size: 13px; }
+
+  .rule { height: 1px; background: var(--border); margin: 0 0 72px; }
+
+  footer { padding-top: 48px; font-size: 12px; color: var(--muted); }
+  footer a { color: var(--muted); }
+
+  @media (max-width: 640px) {
+    .page { padding: 64px 18px 80px; }
+    .workflow { padding: 24px 20px; }
+    .tool-note { padding-left: 16px; }
+    nav { padding: 16px 20px; gap: 12px; }
+    .nav-links { display: none; }
+    .nav-hamburger { display: block; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../">Learning Waypoints</a>
+  <div class="nav-links">
+    <a href="../getting-started/">Getting Started</a>
+    <a href="../philosophy/">Philosophy</a>
+    <a href="https://acara.learningwaypoints.com">ACARA Progressions</a>
+    <a href="https://myp.learningwaypoints.com">MYP Framework</a>
+    <a href="https://planner.learningwaypoints.com">Waypoints Planner</a>
+    <a href="https://signal.learningwaypoints.com">Waypoints Signal</a>
+    <a href="https://topic.learningwaypoints.com">Topic Explorer</a>
+    <a href="https://insight.learningwaypoints.com">Waypoints Insight</a>
+    <a href="https://audio.learningwaypoints.com">Waypoints Audio</a>
+    <a href="https://present.learningwaypoints.com">Waypoints Present</a>
+  </div>
+  <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Open menu">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  </button>
+</nav>
+
+<div class="nav-backdrop" id="nav-backdrop" onclick="closeMenu()"></div>
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+  <button class="nav-mobile-close" onclick="closeMenu()" aria-label="Close menu">✕</button>
+  <a href="../getting-started/" onclick="closeMenu()">Getting Started</a>
+  <a href="../philosophy/" onclick="closeMenu()">Philosophy</a>
+  <a href="https://acara.learningwaypoints.com" onclick="closeMenu()">ACARA Progressions</a>
+  <a href="https://myp.learningwaypoints.com" onclick="closeMenu()">MYP Framework</a>
+  <a href="https://planner.learningwaypoints.com" onclick="closeMenu()">Waypoints Planner</a>
+  <a href="https://signal.learningwaypoints.com" onclick="closeMenu()">Waypoints Signal</a>
+  <a href="https://topic.learningwaypoints.com" onclick="closeMenu()">Topic Explorer</a>
+  <a href="https://insight.learningwaypoints.com" onclick="closeMenu()">Waypoints Insight</a>
+  <a href="https://audio.learningwaypoints.com" onclick="closeMenu()">Waypoints Audio</a>
+  <a href="https://present.learningwaypoints.com" onclick="closeMenu()">Waypoints Present</a>
+</div>
+
+<div class="page">
+
+  <!-- ============================== intro ============================== -->
+  <div class="eyebrow">Getting started</div>
+  <h1>Eight tools,<br><em>one philosophy.</em></h1>
+  <p class="lede">
+    Learning Waypoints is a free suite of curriculum tools for Australian educators.
+    Every tool works on its own, so you can pick whichever solves the problem in front
+    of you. The one underlying idea they share is that classes should stay on one
+    dependency-ordered path, with width, not acceleration, as the lever when pace differs.
+    The more tools you use, the more they complement each other.
+  </p>
+  <span class="hero-tag">Start with any tool · No account required · Free to use</span>
+
+  <!-- ============================== diagram 1 ============================== -->
+  <div class="diagram">
+  <svg viewBox="0 0 880 770" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Learning Waypoints suite at a glance">
+    <!-- waypoint trail -->
+    <path d="M 36 60 C 20 160, 52 200, 36 260 C 22 320, 50 370, 36 410 C 26 470, 48 520, 36 560 C 28 620, 40 680, 36 720"
+          fill="none" stroke="#1a1814" stroke-opacity="0.18" stroke-width="1.6" stroke-dasharray="1.5 7" stroke-linecap="round"/>
+    <circle cx="36" cy="60"  r="5" fill="#f7f4ef" stroke="#4caf50" stroke-width="2"/>
+    <circle cx="36" cy="260" r="5" fill="#f7f4ef" stroke="#1a1814" stroke-opacity="0.6" stroke-width="2"/>
+    <circle cx="36" cy="410" r="5" fill="#f7f4ef" stroke="#1a1814" stroke-opacity="0.5" stroke-width="2"/>
+    <circle cx="36" cy="560" r="5" fill="#f7f4ef" stroke="#1a1814" stroke-opacity="0.35" stroke-width="2"/>
+
+    <!-- ============ zone 1: start in minutes ============ -->
+    <g font-family="'DM Sans',sans-serif">
+      <text x="64" y="58" font-size="11" font-weight="500" letter-spacing="1.6" fill="#7a7570">START IN MINUTES</text>
+      <text x="64" y="80" font-size="12.5" fill="#7a7570" font-weight="300">No framework needed. Value in your first sitting.</text>
+    </g>
+
+    <a href="https://topic.learningwaypoints.com">
+      <rect x="64" y="98" width="386" height="110" rx="14" fill="rgba(255,255,255,0.6)" stroke="rgba(26,24,20,0.12)" style="cursor:pointer"/>
+      <text x="90" y="138" font-size="19">✦</text>
+      <text x="116" y="139" font-family="'Libre Baskerville',serif" font-weight="700" font-size="17" fill="#1a1814">Topic Explorer</text>
+      <text x="90" y="168" font-family="'DM Sans',sans-serif" font-size="12.5" fill="#7a7570">Break down any topic for planning or</text>
+      <text x="90" y="186" font-family="'DM Sans',sans-serif" font-size="12.5" fill="#7a7570">classroom use — interactive maps and quizzes</text>
+    </a>
+
+    <a href="https://present.learningwaypoints.com">
+      <rect x="474" y="98" width="386" height="110" rx="14" fill="rgba(255,255,255,0.6)" stroke="rgba(26,24,20,0.12)" style="cursor:pointer"/>
+      <text x="500" y="138" font-size="19">▦</text>
+      <text x="526" y="139" font-family="'Libre Baskerville',serif" font-weight="700" font-size="17" fill="#1a1814">Waypoints Present</text>
+      <text x="500" y="168" font-family="'DM Sans',sans-serif" font-size="12.5" fill="#7a7570">Markdown in, classroom slides out.</text>
+      <text x="500" y="186" font-family="'DM Sans',sans-serif" font-size="12.5" fill="#7a7570">No sign-up, no lock-in</text>
+    </a>
+
+    <!-- ============ zone 2: see the curriculum ============ -->
+    <g font-family="'DM Sans',sans-serif">
+      <text x="64" y="258" font-size="11" font-weight="500" letter-spacing="1.6" fill="#7a7570">SEE THE CURRICULUM</text>
+      <text x="64" y="280" font-size="12.5" fill="#7a7570" font-weight="300">The reference layer everything else builds on.</text>
+    </g>
+
+    <a href="https://acara.learningwaypoints.com">
+      <rect x="64" y="298" width="386" height="100" rx="14" fill="rgba(255,255,255,0.55)" stroke="rgba(26,24,20,0.12)" style="cursor:pointer"/>
+      <text x="90" y="336" font-size="19">◎</text>
+      <text x="116" y="337" font-family="'Libre Baskerville',serif" font-weight="700" font-size="17" fill="#1a1814">ACARA Progressions</text>
+      <text x="90" y="366" font-family="'DM Sans',sans-serif" font-size="12.5" fill="#7a7570">The full shape of ACARA v9, F–10.</text>
+      <text x="90" y="383" font-family="'DM Sans',sans-serif" font-size="12.5" fill="#7a7570">Waypoints, width, and progression at every stage</text>
+    </a>
+
+    <a href="https://myp.learningwaypoints.com">
+      <rect x="474" y="298" width="386" height="100" rx="14" fill="rgba(255,255,255,0.55)" stroke="rgba(26,24,20,0.12)" style="cursor:pointer"/>
+      <text x="500" y="336" font-size="19">◈</text>
+      <text x="526" y="337" font-family="'Libre Baskerville',serif" font-weight="700" font-size="17" fill="#1a1814">MYP Explorer</text>
+      <text x="500" y="366" font-family="'DM Sans',sans-serif" font-size="12.5" fill="#7a7570">All 8 MYP subject groups, navigated</text>
+      <text x="500" y="383" font-family="'DM Sans',sans-serif" font-size="12.5" fill="#7a7570">through concept-driven progression</text>
+    </a>
+
+    <!-- ============ zone 3: plan a whole unit ============ -->
+    <g font-family="'DM Sans',sans-serif">
+      <text x="64" y="438" font-size="11" font-weight="500" letter-spacing="1.6" fill="#7a7570">PLAN A WHOLE UNIT</text>
+      <text x="64" y="460" font-size="12.5" fill="#7a7570" font-weight="300">The deep end — one shared path for every class.</text>
+    </g>
+
+    <a href="https://planner.learningwaypoints.com">
+      <rect x="64" y="478" width="796" height="104" rx="14" fill="rgba(255,255,255,0.78)" stroke="rgba(26,24,20,0.22)" stroke-width="1.4" style="cursor:pointer"/>
+      <text x="92" y="518" font-size="20">⬡</text>
+      <text x="118" y="519" font-family="'Libre Baskerville',serif" font-weight="700" font-size="18" fill="#1a1814">Waypoints Planner</text>
+      <text x="92" y="548" font-family="'DM Sans',sans-serif" font-size="12.5" fill="#7a7570">Plan a unit around shared waypoints — lesson plans, resources,</text>
+      <text x="92" y="566" font-family="'DM Sans',sans-serif" font-size="12.5" fill="#7a7570">glossaries, slides and student views, all from one sequence</text>
+    </a>
+
+    <!-- ============ zone 4: around your classroom ============ -->
+    <g font-family="'DM Sans',sans-serif">
+      <text x="64" y="618" font-size="11" font-weight="500" letter-spacing="1.6" fill="#7a7570">AROUND YOUR CLASSROOM</text>
+      <text x="64" y="640" font-size="12.5" fill="#7a7570" font-weight="300">Companions for during, after and between lessons.</text>
+    </g>
+
+    <a href="https://signal.learningwaypoints.com/teacher">
+      <rect x="64" y="648" width="250" height="100" rx="14" fill="rgba(255,255,255,0.5)" stroke="rgba(26,24,20,0.12)" style="cursor:pointer"/>
+      <text x="88" y="684" font-size="17">◉</text>
+      <text x="112" y="685" font-family="'Libre Baskerville',serif" font-weight="700" font-size="15.5" fill="#1a1814">Signal</text>
+      <text x="88" y="712" font-family="'DM Sans',sans-serif" font-size="12" fill="#7a7570">Live student confidence</text>
+      <text x="88" y="729" font-family="'DM Sans',sans-serif" font-size="12" fill="#7a7570">check-ins during class</text>
+    </a>
+
+    <a href="https://insight.learningwaypoints.com">
+      <rect x="338" y="648" width="250" height="100" rx="14" fill="rgba(255,255,255,0.5)" stroke="rgba(26,24,20,0.12)" style="cursor:pointer"/>
+      <text x="362" y="684" font-size="17">◐</text>
+      <text x="386" y="685" font-family="'Libre Baskerville',serif" font-weight="700" font-size="15.5" fill="#1a1814">Insight</text>
+      <text x="362" y="712" font-family="'DM Sans',sans-serif" font-size="12" fill="#7a7570">What students actually</text>
+      <text x="362" y="729" font-family="'DM Sans',sans-serif" font-size="12" fill="#7a7570">understood, after class</text>
+    </a>
+
+    <a href="https://audio.learningwaypoints.com">
+      <rect x="612" y="648" width="248" height="100" rx="14" fill="rgba(255,255,255,0.5)" stroke="rgba(26,24,20,0.12)" style="cursor:pointer"/>
+      <text x="636" y="684" font-size="17">♬</text>
+      <text x="660" y="685" font-family="'Libre Baskerville',serif" font-weight="700" font-size="15.5" fill="#1a1814">Audio</text>
+      <text x="636" y="712" font-family="'DM Sans',sans-serif" font-size="12" fill="#7a7570">Study audio, one episode</text>
+      <text x="636" y="729" font-family="'DM Sans',sans-serif" font-size="12" fill="#7a7570">per waypoint</text>
+    </a>
+  </svg>
+  </div>
+
+  <!-- ============================== zone 1 notes ============================== -->
+  <div class="zone start">
+    <div class="zone-kicker">Start in minutes</div>
+    <p class="zone-frame">
+      These two work with nothing but what you bring. Need to see the shape of a
+      topic — for your own planning or to explore with students? Start with Topic
+      Explorer. Need a slide deck for a specific lesson? Start with Present.
+    </p>
+
+    <div class="tool-note">
+      <h3><span class="icon">✦</span>Topic Explorer</h3>
+      <p>
+        Type any topic and Topic Explorer builds you a prompt. Paste it into whatever AI
+        you already use, paste the result back, and you have a structured topic map —
+        clusters, nodes, quizzes, matching activities. Use it for your own planning first:
+        five minutes and you can see the conceptual terrain before you've written a lesson.
+        Then take the same map into class — project it, explore it together, or generate a
+        coaching prompt that lets students work through it with an AI that stays within the
+        boundaries you set.
+      </p>
+      <p class="try">Type a topic you're teaching next term, even one you haven't taught before. Ten minutes, start to finish.</p>
+      <a class="try-btn" href="https://topic.learningwaypoints.com">Open Topic Explorer</a>
+    </div>
+
+    <div class="tool-note">
+      <h3><span class="icon">▦</span>Waypoints Present</h3>
+      <p>
+        When you know what you're teaching and need a deck for it. Describe your lesson
+        content and Present builds a prompt that generates the slides — or paste Markdown
+        directly if you have it. Edit live with a slide-by-slide preview, share a deck as
+        a single link, and export a snapshot to PowerPoint if you need to. No accounts, no lock-in.
+      </p>
+      <p class="try">Load the sample deck to see how it feels, then try the Generate tab with a lesson of your own.</p>
+      <a class="try-btn" href="https://present.learningwaypoints.com">Open Present</a>
+    </div>
+  </div>
+
+  <!-- ============================== zone 2 notes: see the curriculum ============================== -->
+  <div class="zone">
+    <div class="zone-kicker">See the curriculum</div>
+    <p class="zone-frame">
+      The reference layer the suite builds on. Browse the full structure of your curriculum
+      and see how waypoints, width, and progression work before you plan anything.
+    </p>
+
+    <div class="tool-note">
+      <h3><span class="icon">◎</span>ACARA Progressions</h3>
+      <p>
+        Visualise the full shape of ACARA v9 across subjects and year levels. See the
+        conceptual progression behind each standard, explore the width available at every
+        stage, and understand how waypoints are structured before using them in the Planner.
+      </p>
+      <p class="try">Pick a subject and year level you know well. Open a standard and look at how the waypoints break it down.</p>
+      <a class="try-btn" href="https://acara.learningwaypoints.com">Open ACARA Progressions</a>
+    </div>
+
+    <div class="tool-note">
+      <h3><span class="icon">◈</span>MYP Explorer</h3>
+      <p>
+        Navigate all eight MYP subject groups through the lens of concept-driven progression.
+        See how phases, criteria, and year-level expectations connect across the framework.
+      </p>
+      <p class="try">Choose a subject group you teach and explore its progression wheel.</p>
+      <a class="try-btn" href="https://myp.learningwaypoints.com">Open MYP Explorer</a>
+    </div>
+  </div>
+
+  <!-- ============================== zone 3 notes: plan a whole unit ============================== -->
+  <div class="zone">
+    <div class="zone-kicker">Plan a whole unit</div>
+    <p class="zone-frame">
+      When you're ready to go deeper. The Planner works with the waypoint sequences you can
+      explore in ACARA Progressions and MYP Explorer, and turns them into a complete unit.
+    </p>
+
+    <div class="tool-note">
+      <h3><span class="icon">⬡</span>Waypoints Planner</h3>
+      <p>
+        Pick your subject and standards, review the waypoint sequence, and generate a
+        complete unit from it: lesson plans, a resource checklist, a student glossary,
+        slide decks for Present, and student-facing lesson cards ready to paste into your
+        LMS. Everything derives from the one sequence, so it stays coherent.
+      </p>
+      <p class="try">Pick a standard you explored in ACARA Progressions and open the Planner with it.</p>
+      <a class="try-btn" href="https://planner.learningwaypoints.com">Open Planner</a>
+    </div>
+  </div>
+
+  <!-- ============================== zone 3 notes ============================== -->
+  <div class="zone">
+    <div class="zone-kicker">Around your classroom</div>
+    <p class="zone-frame">
+      Companions that fit around lessons rather than replacing anything. Each one stands
+      alone, but they get sharper when they share your unit's waypoints.
+    </p>
+
+    <div class="tool-note">
+      <h3><span class="icon">◉</span>Signal</h3>
+      <p>
+        Students check in on their confidence at each waypoint — before, during, or after
+        a lesson — and you see where every class stands in real time. No student accounts;
+        they just enter a class code.
+      </p>
+      <p class="try">Generate a session and put the code on the board. Students join instantly.</p>
+      <a class="try-btn" href="https://signal.learningwaypoints.com/teacher">Open Signal</a>
+    </div>
+
+    <div class="tool-note">
+      <h3><span class="icon">◐</span>Insight</h3>
+      <p>
+        After students work through a Topic Explorer session, export the summary and
+        Insight classifies their thinking: what's on track, what's a misconception, what's
+        genuinely novel — and which misconceptions deserve whole-class attention tomorrow.
+      </p>
+      <p class="try">Run a Topic Explorer coaching session first, then bring its summary to Insight.</p>
+      <a class="try-btn" href="https://insight.learningwaypoints.com">Open Insight</a>
+    </div>
+
+    <div class="tool-note">
+      <h3><span class="icon">♬</span>Audio</h3>
+      <p>
+        Study audio that actually follows your curriculum: one episode per waypoint, each
+        in the teaching mode that fits — explanation, worked example, two experts
+        debating, recall practice. Generated in your browser, exportable as MP3s.
+      </p>
+      <p class="try">Best explored after you've seen waypoints in the Planner or ACARA Progressions. The episodes map to them directly.</p>
+      <a class="try-btn" href="https://audio.learningwaypoints.com">Open Audio</a>
+    </div>
+  </div>
+
+  <!-- ============================== workflow ============================== -->
+  <div class="workflow">
+    <h2>One pattern, everywhere</h2>
+    <div class="workflow-steps">
+      <span class="wf-step">The tool builds a prompt</span>
+      <span class="wf-arrow">→</span>
+      <span class="wf-step">You paste it into your AI</span>
+      <span class="wf-arrow">→</span>
+      <span class="wf-step">You paste the result back</span>
+    </div>
+    <p>
+      Every generating tool in the suite works the same way, and it's a deliberate choice,
+      not a limitation. <strong>Your content never touches our servers</strong> — there are
+      no accounts, nothing is stored, and you use whichever AI your school already trusts.
+      The tools' job is to build you a much better prompt than you'd write by hand: one that
+      knows the curriculum, the structure, and the format the tool expects back.
+    </p>
+    <p>
+      Once you've done it in one tool, you've done it in all of them.
+    </p>
+  </div>
+
+  <div class="rule"></div>
+
+  <!-- ============================== philosophy bridge ============================== -->
+  <h2>The idea behind it</h2>
+  <p class="section-note">
+    The thing that connects every tool is a shared idea: a <strong>waypoint</strong>,
+    one step on the dependency-ordered path through a topic. The Planner sequences waypoints
+    for a unit. Present builds slides for them. Signal checks confidence on them. Insight
+    classifies thinking against them. Audio narrates them. Because every tool speaks the same
+    language, work you do in one carries into the others.
+  </p>
+  <p class="section-note" style="margin-top:-16px;">
+    <a href="../philosophy/">Read the philosophy →</a>
+  </p>
+
+  <footer>
+    <p>© 2026 Learning Waypoints · Free to use · No account required · <a href="../">Back to all tools</a></p>
+  </footer>
+
+</div>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('nav-mobile-menu').classList.add('open');
+    document.getElementById('nav-backdrop').classList.add('open');
+  }
+  function closeMenu() {
+    document.getElementById('nav-mobile-menu').classList.remove('open');
+    document.getElementById('nav-backdrop').classList.remove('open');
+  }
+</script>
+
+</body>
+</html>

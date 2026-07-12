@@ -143,8 +143,10 @@
 <body>
 
 <nav>
-  <a class="nav-logo" href="/">Learning Waypoints</a>
+  <a class="nav-logo" href="./">Learning Waypoints</a>
   <div class="nav-links">
+    <a href="getting-started/">Getting Started</a>
+    <a href="philosophy/">Philosophy</a>
     <a href="https://acara.learningwaypoints.com">ACARA Progressions</a>
     <a href="https://myp.learningwaypoints.com">MYP Framework</a>
     <a href="https://planner.learningwaypoints.com">Waypoints Planner</a>
@@ -166,6 +168,8 @@
 <div class="nav-backdrop" id="nav-backdrop" onclick="closeMenu()"></div>
 <div class="nav-mobile-menu" id="nav-mobile-menu">
   <button class="nav-mobile-close" onclick="closeMenu()" aria-label="Close menu">✕</button>
+  <a href="getting-started/" onclick="closeMenu()">Getting Started</a>
+  <a href="philosophy/" onclick="closeMenu()">Philosophy</a>
   <a href="https://acara.learningwaypoints.com" onclick="closeMenu()">ACARA Progressions</a>
   <a href="https://myp.learningwaypoints.com" onclick="closeMenu()">MYP Framework</a>
   <a href="https://planner.learningwaypoints.com" onclick="closeMenu()">Waypoints Planner</a>
@@ -183,7 +187,8 @@
     Curriculum tools that map the full learning landscape and bring structure to every stage. Plan around a shared conceptual path, adjusting depth and challenge at each waypoint so every class moves forward together, whatever the pace.
   </p>
   <span class="hero-tag">Free to use · No account required</span>
-  <a href="#tools" class="hero-cta">Get started ↓</a>
+  <a href="#tools" class="hero-cta">Explore the tools ↓</a>
+  <a href="getting-started/" class="hero-cta" style="margin-left:12px; border-color:var(--muted); color:var(--muted);">New here? Getting started →</a>
 </section>
 
 <div class="rule"></div>
@@ -281,6 +286,10 @@
 
 <footer>
   <p>© 2026 Learning Waypoints</p>
+  <div style="display:flex; gap:20px;">
+    <a href="getting-started/">Getting Started</a>
+    <a href="philosophy/">Philosophy</a>
+  </div>
 </footer>
 
 <script>
