@@ -41,6 +41,8 @@
     .nav-links { display: flex; gap: 20px; }
     .nav-links a { font-size: 12px; color: var(--muted); text-decoration: none; white-space: nowrap; }
     .nav-links a:hover { color: var(--ink); }
+    .nav-links a.nav-site { font-weight: 500; color: var(--ink); }
+    .nav-sep { width: 1px; height: 12px; background: var(--border); align-self: center; margin: 0 2px; }
 
     .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; color: var(--ink); margin-left: auto; }
 
@@ -145,8 +147,9 @@
 <nav>
   <a class="nav-logo" href="./">Learning Waypoints</a>
   <div class="nav-links">
-    <a href="getting-started/">Getting Started</a>
-    <a href="philosophy/">Philosophy</a>
+    <a class="nav-site" href="getting-started/">Getting Started</a>
+    <a class="nav-site" href="philosophy/">Philosophy</a>
+    <span class="nav-sep"></span>
     <a href="https://acara.learningwaypoints.com">ACARA Progressions</a>
     <a href="https://myp.learningwaypoints.com">MYP Framework</a>
     <a href="https://planner.learningwaypoints.com">Waypoints Planner</a>
@@ -287,8 +290,9 @@
 <footer>
   <p>© 2026 Learning Waypoints</p>
   <div style="display:flex; gap:20px;">
-    <a href="getting-started/">Getting Started</a>
-    <a href="philosophy/">Philosophy</a>
+    <a class="nav-site" href="getting-started/">Getting Started</a>
+    <a class="nav-site" href="philosophy/">Philosophy</a>
+    <span class="nav-sep"></span>
   </div>
 </footer>
 
