@@ -117,8 +117,8 @@
 .lw-where ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; max-width: 700px; }
 .lw-where li { font-size: 15px; line-height: 1.7; color: var(--muted); padding-left: 18px; border-left: 2px solid var(--border); }
 .lw-where li strong { color: var(--ink); font-weight: 500; }
-.lw-where li a { color: var(--ink); font-weight: 500; text-decoration: underline; text-decoration-color: rgba(26,24,20,0.3); text-underline-offset: 3px; }
-.lw-where li a:hover { text-decoration-color: var(--ink); }
+.lw-where li a { display: inline-block; color: var(--ink); font-size: 13px; font-weight: 500; text-decoration: none; line-height: 1.4; padding: 2px 11px; border: 1px solid rgba(26,24,20,0.22); border-radius: 20px; background: rgba(255,255,255,0.6); white-space: nowrap; transition: background 0.15s, border-color 0.15s; }
+.lw-where li a:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 
 /* ---------- landing pages (Curriculum, Plan, Lessons, Getting Started) ---------- */
 
