@@ -5,14 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Learning Waypoints</title>
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
   <style>
-    :root {
-      --bg: #f7f4ef;
-      --ink: #1a1814;
-      --muted: #7a7570;
-      --border: rgba(26,24,20,0.1);
-      --accent: #1a1814;
-    }
+    :root { --accent: #1a1814; }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -27,37 +22,6 @@
       z-index: 0;
     }
 
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 20px 48px;
-      display: flex; align-items: center;
-      background: rgba(247,244,239,0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      gap: 32px;
-    }
-
-    .nav-logo { font-family: 'Libre Baskerville', serif; font-size: 15px; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); text-decoration: none; flex-shrink: 0; }
-    .nav-links { display: flex; gap: 20px; }
-    .nav-links a { font-size: 12px; color: var(--muted); text-decoration: none; white-space: nowrap; }
-    .nav-links a:hover { color: var(--ink); }
-    .nav-links a.nav-site { font-weight: 500; color: var(--ink); }
-    .nav-sep { width: 1px; height: 12px; background: var(--border); align-self: center; margin: 0 2px; }
-
-    .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; color: var(--ink); margin-left: auto; }
-
-    .nav-mobile-menu {
-      display: none; position: fixed; top: 0; right: 0; width: 280px; height: 100%;
-      background: var(--bg); border-left: 1px solid var(--border); z-index: 200;
-      padding: 24px; flex-direction: column; gap: 8px; box-shadow: -8px 0 40px rgba(0,0,0,0.1);
-    }
-    .nav-mobile-menu.open { display: flex; }
-    .nav-mobile-menu a { font-size: 14px; color: var(--muted); text-decoration: none; padding: 10px 0; border-bottom: 1px solid var(--border); }
-    .nav-mobile-menu a:hover { color: var(--ink); }
-    .nav-mobile-close { align-self: flex-end; background: none; border: none; cursor: pointer; font-size: 20px; color: var(--muted); padding: 4px; margin-bottom: 12px; }
-
-    .nav-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 150; }
-    .nav-backdrop.open { display: block; }
 
     .hero {
       position: relative; z-index: 1; min-height: 100vh;
@@ -75,13 +39,21 @@
 
     .hero-cta { display: inline-block; margin-top: 32px; padding: 14px 28px; border: 1px solid var(--ink); border-radius: 8px; font-size: 14px; font-weight: 500; color: var(--ink); text-decoration: none; transition: background 0.2s, color 0.2s; opacity: 0; animation: fadeUp 0.6s ease 0.5s forwards; }
     .hero-cta:hover { background: var(--ink); color: var(--bg); }
+    .hero-cta + .hero-cta { margin-left: 12px; }
+    @media (max-width: 480px) { .hero-cta + .hero-cta { margin-left: 0; margin-top: 12px; } }
 
     .tools { position: relative; z-index: 1; padding: 80px 48px 120px; max-width: 1100px; margin: 0 auto; }
     .tools-header { margin-bottom: 48px; opacity: 0; animation: fadeUp 0.6s ease 0.5s forwards; }
     .tools-kicker { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
     .tools-title { font-family: 'Libre Baskerville', serif; font-size: clamp(24px, 3vw, 36px); font-weight: 700; line-height: 1.2; }
 
-    .tool-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+    .tool-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 56px; }
+    .group-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 20px; }
+    .group-head h3 { font-family: 'Libre Baskerville', serif; font-size: 22px; font-weight: 700; }
+    .group-head h3 a { color: inherit; text-decoration: none; }
+    .group-head p { font-size: 14px; color: var(--muted); }
+    .group-head .more { font-size: 12px; font-weight: 500; color: var(--ink); text-decoration: none; margin-left: auto; white-space: nowrap; }
+    .group-head .more::after { content: ' →'; }
 
     .tool-card {
       border: 1px solid var(--border); border-radius: 16px; padding: 32px;
@@ -103,6 +75,7 @@
     .tool-card:nth-child(6) { animation-delay: 1.1s; }
     .tool-card:nth-child(7) { animation-delay: 1.2s; }
     .tool-card:nth-child(8) { animation-delay: 1.3s; }
+    .tool-card:nth-child(n+9) { animation-delay: 1.4s; }
 
     .tool-icon { font-size: 24px; line-height: 1; }
 
@@ -111,6 +84,7 @@
     .status-beta        { background: rgba(255,152,0,0.12);   color: #e65100; }
     .status-preview     { background: rgba(59,130,246,0.12);  color: #1d4ed8; }
     .status-coming-soon { background: rgba(26,24,20,0.06);    color: var(--muted); }
+    .status-draft       { background: rgba(26,24,20,0.06);    color: var(--muted); }
 
     .tool-name { font-family: 'Libre Baskerville', serif; font-size: 20px; font-weight: 700; line-height: 1.2; }
     .tool-desc { font-size: 13.5px; line-height: 1.7; color: var(--muted); flex: 1; }
@@ -122,76 +96,33 @@
 
     .rule { position: relative; z-index: 1; height: 1px; background: var(--border); max-width: 1100px; margin: 0 auto; }
 
-    footer { position: relative; z-index: 1; padding: 32px 48px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-    footer p { font-size: 12px; color: var(--muted); }
-    footer a { font-size: 12px; color: var(--muted); text-decoration: none; }
-    footer a:hover { color: var(--ink); }
 
     @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 
     @media (max-width: 768px) {
-      nav { padding: 16px 20px; gap: 12px; }
-      .nav-links { display: none; }
-      .nav-hamburger { display: block; }
       .hero { padding: 100px 20px 60px; }
       .hero-desc { margin-bottom: 36px; }
       .tools { padding: 60px 20px 80px; }
       .tool-grid { grid-template-columns: 1fr; }
       .tool-card { padding: 24px; }
-      footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <a class="nav-logo" href="./">Learning Waypoints</a>
-  <div class="nav-links">
-    <a class="nav-site" href="getting-started/">Getting Started</a>
-    <a class="nav-site" href="philosophy/">Philosophy</a>
-    <span class="nav-sep"></span>
-    <a href="https://acara.learningwaypoints.com">ACARA Progressions</a>
-    <a href="https://myp.learningwaypoints.com">MYP Framework</a>
-    <a href="https://planner.learningwaypoints.com">Waypoints Planner</a>
-    <a href="https://signal.learningwaypoints.com">Waypoints Signal</a>
-    <a href="https://topic.learningwaypoints.com">Topic Explorer</a>
-    <a href="https://insight.learningwaypoints.com">Waypoints Insight</a>
-    <a href="https://audio.learningwaypoints.com">Waypoints Audio</a>
-    <a href="https://prepare.learningwaypoints.com">Waypoints Prepare</a>
-  </div>
-  <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Open menu">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <line x1="3" y1="6" x2="21" y2="6" />
-      <line x1="3" y1="12" x2="21" y2="12" />
-      <line x1="3" y1="18" x2="21" y2="18" />
-    </svg>
-  </button>
-</nav>
-
-<div class="nav-backdrop" id="nav-backdrop" onclick="closeMenu()"></div>
-<div class="nav-mobile-menu" id="nav-mobile-menu">
-  <button class="nav-mobile-close" onclick="closeMenu()" aria-label="Close menu">✕</button>
-  <a href="getting-started/" onclick="closeMenu()">Getting Started</a>
-  <a href="philosophy/" onclick="closeMenu()">Philosophy</a>
-  <a href="https://acara.learningwaypoints.com" onclick="closeMenu()">ACARA Progressions</a>
-  <a href="https://myp.learningwaypoints.com" onclick="closeMenu()">MYP Framework</a>
-  <a href="https://planner.learningwaypoints.com" onclick="closeMenu()">Waypoints Planner</a>
-  <a href="https://signal.learningwaypoints.com" onclick="closeMenu()">Waypoints Signal</a>
-  <a href="https://topic.learningwaypoints.com" onclick="closeMenu()">Topic Explorer</a>
-  <a href="https://insight.learningwaypoints.com" onclick="closeMenu()">Waypoints Insight</a>
-  <a href="https://audio.learningwaypoints.com" onclick="closeMenu()">Waypoints Audio</a>
-  <a href="https://prepare.learningwaypoints.com" onclick="closeMenu()">Waypoints Prepare</a>
-</div>
+<header id="lw-nav"></header>
 
 <section class="hero">
-  <div class="hero-eyebrow">Open curriculum tools for Australian educators</div>
+  <div class="hero-eyebrow">Free curriculum tools for Australian teachers</div>
   <h1 class="hero-title">Waypoints for<br><em>every learner.</em></h1>
   <p class="hero-desc">
-    Curriculum tools that map the full learning landscape and bring structure to every stage. Plan around a shared conceptual path, adjusting depth and challenge at each waypoint so every class moves forward together, whatever the pace.
+    Unpack the curriculum, plan units, and teach from a curated library of lessons, or make your own. ACARA sets the expectations for what Australian students should be taught. Learning Waypoints maps the incremental steps to get there, in the order they're best learned.
   </p>
-  <span class="hero-tag">Free to use · No account required</span>
-  <a href="#tools" class="hero-cta">Explore the tools ↓</a>
-  <a href="getting-started/" class="hero-cta" style="margin-left:12px; border-color:var(--muted); color:var(--muted);">New here? Getting started →</a>
+  <div><span class="hero-tag">Free to use · No account required</span></div>
+  <div>
+    <a href="/getting-started/" class="hero-cta">New here? Getting started →</a>
+    <a href="#tools" class="hero-cta" style="border-color:var(--muted); color:var(--muted);">Browse the tools ↓</a>
+  </div>
 </section>
 
 <div class="rule"></div>
@@ -199,116 +130,132 @@
 <section class="tools" id="tools">
   <div class="tools-header">
     <div class="tools-kicker">The tools</div>
-    <h2 class="tools-title">Everything in one place</h2>
+    <h2 class="tools-title">Three parts, one sequence</h2>
   </div>
 
+  <div class="group-head">
+    <h3><a href="/curriculum/">Curriculum</a></h3>
+    <p>See where students need to get to, and the steps along the way.</p>
+    <a class="more" href="/curriculum/">About Curriculum</a>
+  </div>
   <div class="tool-grid">
-
     <a class="tool-card" href="https://acara.learningwaypoints.com">
       <div>
         <div class="tool-icon">◎</div>
         <span class="tool-status status-live">Live</span>
       </div>
       <div class="tool-name">ACARA Progressions</div>
-      <div class="tool-desc">Visualise the full shape of ACARA v9 across subjects and year levels. Understand the intent and progression behind each standard and explore the conceptual width at every stage.</div>
+      <div class="tool-desc">Every ACARA standard, Foundation to Year 10, broken into the steps students learn in order, with the earlier standards each one builds on.</div>
       <div class="tool-link">Open ACARA Progressions</div>
     </a>
-
     <a class="tool-card" href="https://myp.learningwaypoints.com">
       <div>
         <div class="tool-icon">◈</div>
         <span class="tool-status status-live">Live</span>
       </div>
-      <div class="tool-name">MYP Framework Explorer</div>
-      <div class="tool-desc">Visualise the structure of all 8 MYP subject groups through the lens of principled, concept-driven progression. Navigate a deliberately flexible framework with clarity and confidence.</div>
-      <div class="tool-link">Open MYP Framework Explorer</div>
+      <div class="tool-name">MYP Explorer</div>
+      <div class="tool-desc">How the MYP fits together across all eight subject groups: phases, criteria and year-level expectations in one view.</div>
+      <div class="tool-link">Open MYP Explorer</div>
     </a>
-
-    <a class="tool-card" href="https://planner.learningwaypoints.com">
-      <div>
-        <div class="tool-icon">⬡</div>
-        <span class="tool-status status-beta">Beta</span>
-      </div>
-      <div class="tool-name">Waypoints Planner</div>
-      <div class="tool-desc">Plan a shared conceptual path across all your classes. Manage pace differences by adjusting width (broader contexts and connections) at each waypoint rather than pushing some classes ahead or leaving others behind.</div>
-      <div class="tool-link">Open Waypoints Planner</div>
-    </a>
-
-    <a class="tool-card" href="https://signal.learningwaypoints.com/teacher">
-      <div>
-        <div class="tool-icon">◉</div>
-        <span class="tool-status status-beta">Beta</span>
-      </div>
-      <div class="tool-name">Waypoints Signal</div>
-      <div class="tool-desc">Signal confidence at every waypoint in real time. Students check in before, during, or after a lesson so you can see exactly where each class stands and decide what comes next.</div>
-      <div class="tool-link">Open Waypoints Signal</div>
-    </a>
-
     <a class="tool-card" href="https://topic.learningwaypoints.com">
       <div>
         <div class="tool-icon">✦</div>
         <span class="tool-status status-beta">Beta</span>
       </div>
       <div class="tool-name">Topic Explorer</div>
-      <div class="tool-desc">Turn any topic into a structured learning space in minutes using any AI assistant. Present it directly in class, explore it interactively together, or let students navigate it with an AI coach that stays within the boundaries you set.</div>
+      <div class="tool-desc">Type a topic, paste the prompt into your AI, and get back a map of it to plan from or explore with a class.</div>
       <div class="tool-link">Open Topic Explorer</div>
     </a>
-
+  </div>
+  <div class="group-head">
+    <h3><a href="/plan/">Plan</a></h3>
+    <p>One unit for all your classes.</p>
+    <a class="more" href="/plan/">About Plan</a>
+  </div>
+  <div class="tool-grid">
+    <a class="tool-card" href="https://planner.learningwaypoints.com">
+      <div>
+        <div class="tool-icon">⬡</div>
+        <span class="tool-status status-beta">Beta</span>
+      </div>
+      <div class="tool-name">Planner</div>
+      <div class="tool-desc">Build a whole unit from the curriculum's sequence: lesson plans, resources, a glossary, slides and handouts, all lined up. Faster classes do more with each idea rather than racing ahead.</div>
+      <div class="tool-link">Open Planner</div>
+    </a>
+    <a class="tool-card" href="https://signal.learningwaypoints.com/teacher">
+      <div>
+        <div class="tool-icon">◉</div>
+        <span class="tool-status status-beta">Beta</span>
+      </div>
+      <div class="tool-name">Signal</div>
+      <div class="tool-desc">Students say how confident they feel at each step, so you can see where every class is during the unit. No student accounts, just a class code.</div>
+      <div class="tool-link">Open Signal</div>
+    </a>
     <a class="tool-card" href="https://insight.learningwaypoints.com">
       <div>
         <div class="tool-icon">◐</div>
         <span class="tool-status status-preview">Preview</span>
       </div>
-      <div class="tool-name">Waypoints Insight</div>
-      <div class="tool-desc">Classify and surface student thinking after class. Export a session summary from Topic Explorer, optionally link an ACARA standard, and see what students understood, what they misunderstood, and what deserves the whole class's attention.</div>
-      <div class="tool-link">Open Waypoints Insight</div>
+      <div class="tool-name">Insight</div>
+      <div class="tool-desc">After a Topic Explorer session, see what students understood, what they got wrong, and what to pick up with the whole class.</div>
+      <div class="tool-link">Open Insight</div>
     </a>
-
-    <a class="tool-card" href="https://audio.learningwaypoints.com">
+  </div>
+  <div class="group-head">
+    <h3><a href="/lessons/">Lessons</a></h3>
+    <p>Teach from the library, or make your own.</p>
+    <a class="more" href="/lessons/">About Lessons</a>
+  </div>
+  <div class="tool-grid">
+    <a class="tool-card" href="https://tutorials.learningwaypoints.com">
       <div>
-        <div class="tool-icon">♬</div>
-        <span class="tool-status status-beta">Beta</span>
+        <div class="tool-icon">▤</div>
+        <span class="tool-status status-live">Live</span>
       </div>
-      <div class="tool-name">Waypoints Audio</div>
-      <div class="tool-desc">Generate curriculum-grounded study audio from your waypoint data. Each episode maps to a waypoint, authored in the teaching mode that fits — exposition, worked example, misconception repair, debate — with recall and recap built in.</div>
-      <div class="tool-link">Open Waypoints Audio</div>
+      <div class="tool-name">Tutorials</div>
+      <div class="tool-desc">Short interactive lessons in coding, maths, science and more that students work through themselves, with plain-language notes for any teacher.</div>
+      <div class="tool-link">Open Tutorials</div>
     </a>
-
     <a class="tool-card" href="https://prepare.learningwaypoints.com">
       <div>
         <div class="tool-icon">▦</div>
         <span class="tool-status status-beta">Beta</span>
       </div>
-      <div class="tool-name">Waypoints Prepare</div>
-      <div class="tool-desc">Markdown in, classroom material out — slide decks you can present straight from the browser, and printable handouts with ruled response space, teacher-only notes and width tiers. Work on a whole set at once, and export to PowerPoint, PDF or Google Docs. No sign-up, no lock-in.</div>
-      <div class="tool-link">Open Waypoints Prepare</div>
+      <div class="tool-name">Prepare</div>
+      <div class="tool-desc">Describe a lesson and get slides and printable handouts. Edit in the browser, present from it, or export to PowerPoint, PDF or Google Docs.</div>
+      <div class="tool-link">Open Prepare</div>
     </a>
-
+    <a class="tool-card" href="https://audio.learningwaypoints.com">
+      <div>
+        <div class="tool-icon">♬</div>
+        <span class="tool-status status-beta">Beta</span>
+      </div>
+      <div class="tool-name">Audio</div>
+      <div class="tool-desc">Study episodes that follow your unit's sequence, one per step, made in your browser and exported as MP3s.</div>
+      <div class="tool-link">Open Audio</div>
+    </a>
+  </div>
+  <div class="group-head">
+    <h3><a href="/getting-started/ask-your-ai/">Prompts for your AI</a></h3>
+    <p>Like every tool here, these work with the AI you already have. They're for when you'd rather manage your own prompts, built on the same core the tools use, every standard broken down into waypoints. What your AI writes can go straight into Prepare, the Planner, or your own planning.</p>
+    <a class="more" href="/getting-started/ask-your-ai/">Ask your AI</a>
+  </div>
+  <div class="tool-grid">
+    <a class="tool-card" href="/getting-started/ask-your-ai/">
+      <div>
+        <div class="tool-icon">◇</div>
+        <span class="tool-status status-draft">Draft</span>
+      </div>
+      <div class="tool-name">Waypoints Kit</div>
+      <div class="tool-desc">A small set of plain files your AI reads before it answers, so its suggestions are grounded in the curriculum and the framework. Plans, checks, slides, worksheets, a coach for students. No app in between.</div>
+      <div class="tool-link">Ask your AI</div>
+    </a>
   </div>
 </section>
 
-<footer>
-  <p>© 2026 Learning Waypoints</p>
-  <div style="display:flex; gap:20px; flex-wrap:wrap; align-items:center;">
-    <a class="nav-site" href="getting-started/">Getting Started</a>
-    <a class="nav-site" href="philosophy/">Philosophy</a>
-    <span class="nav-sep"></span>
-    <a href="/privacy/">Privacy</a>
-    <a href="/terms/">Terms</a>
-    <a href="/support/">Support</a>
-  </div>
-</footer>
+<footer id="lw-footer"></footer>
 
-<script>
-  function toggleMenu() {
-    document.getElementById('nav-mobile-menu').classList.add('open');
-    document.getElementById('nav-backdrop').classList.add('open');
-  }
-  function closeMenu() {
-    document.getElementById('nav-mobile-menu').classList.remove('open');
-    document.getElementById('nav-backdrop').classList.remove('open');
-  }
-</script>
+<script src="/assets/site.js"></script>
 
 </body>
 </html>

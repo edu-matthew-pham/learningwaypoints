@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lessons — Learning Waypoints</title>
+<meta name="description" content="A curated library of interactive lessons, plus tools for making your own slides, handouts and audio." />
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+  
+</style>
+</head>
+<body>
+<header id="lw-nav"></header>
+<main class="lw-page">
+  <div class="lw-eyebrow">Lessons</div>
+  <h1>Teach from the library,<br><em>or make your own.</em></h1>
+  <p class="lw-lede">Teach from our library of lessons, or make your own. Tutorials are short interactive lessons in coding, maths, science and more. Students work through them on their own, and every lesson comes with teacher notes written for anyone, not just subject specialists. Prepare turns a lesson outline into slides and printable handouts. Audio makes study episodes that follow the same sequence. We check every lesson before it goes in and keep refining them as they're used, and teachers can request or contribute their own.</p>
+
+  <div class="lw-tools">
+    <a class="lw-tool" href="https://tutorials.learningwaypoints.com">
+      <span class="lw-tool-icon">▤</span>
+      <span class="lw-tool-name">Tutorials<span class="lw-status live">Live</span></span>
+      <span class="lw-tool-go">Open</span>
+      <span class="lw-tool-desc">Short interactive lessons in coding, maths, science, engineering, digital systems and AI. Students work through them in the browser; teachers get plain-language notes, slides and answers.</span>
+    </a>
+    <a class="lw-tool" href="https://prepare.learningwaypoints.com">
+      <span class="lw-tool-icon">▦</span>
+      <span class="lw-tool-name">Prepare<span class="lw-status beta">Beta</span></span>
+      <span class="lw-tool-go">Open</span>
+      <span class="lw-tool-desc">Describe a lesson and get slides and printable handouts. Edit in the browser, present from it, or export to PowerPoint, PDF or Google Docs.</span>
+    </a>
+    <a class="lw-tool" href="https://audio.learningwaypoints.com">
+      <span class="lw-tool-icon">♬</span>
+      <span class="lw-tool-name">Audio<span class="lw-status beta">Beta</span></span>
+      <span class="lw-tool-go">Open</span>
+      <span class="lw-tool-desc">Study episodes that follow your unit's sequence, one per step, made in your browser and exported as MP3s.</span>
+    </a>
+  </div>
+
+  <div class="lw-kitline">
+    <span>Prefer to work in your own AI?</span>
+    <a href="/getting-started/ask-your-ai/">The Kit does this without an app</a>
+  </div>
+
+  <h2 style="margin-top:48px">Make your own</h2>
+  <p class="lw-note">Teachers can write a tutorial in Tutorials' <a href="https://tutorials.learningwaypoints.com/code/create/">Create</a> page, or ask for one through the <a href="https://forms.gle/CoRAXJWHnVQ8mXpPA">request form</a>. Each one is checked before it's added to the library.</p>
+</main>
+<footer id="lw-footer"></footer>
+<script src="/assets/site.js"></script>
+</body>
+</html>

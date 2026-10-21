@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Curriculum — Learning Waypoints</title>
+<meta name="description" content="See the Australian Curriculum and the MYP as sequences of steps, not just endpoints." />
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+  
+</style>
+</head>
+<body>
+<header id="lw-nav"></header>
+<main class="lw-page">
+  <div class="lw-eyebrow">Curriculum</div>
+  <h1>See where students need to get to,<br><em>and the steps along the way.</em></h1>
+  <p class="lw-lede">The curriculum tells you where students need to get to. It doesn't tell you the steps along the way. ACARA Progressions fills in those steps for every standard, and shows what students should already have learned in earlier years. The MYP Explorer lays out how the IB's framework fits together across all eight subject groups. And Topic Explorer turns any topic into a map you can plan from, or explore with a class.</p>
+
+  <div class="lw-tools">
+    <a class="lw-tool" href="https://acara.learningwaypoints.com">
+      <span class="lw-tool-icon">◎</span>
+      <span class="lw-tool-name">ACARA Progressions<span class="lw-status live">Live</span></span>
+      <span class="lw-tool-go">Open</span>
+      <span class="lw-tool-desc">Every ACARA standard, Foundation to Year 10, broken into the steps students learn in order, with the earlier standards each one builds on.</span>
+    </a>
+    <a class="lw-tool" href="https://myp.learningwaypoints.com">
+      <span class="lw-tool-icon">◈</span>
+      <span class="lw-tool-name">MYP Explorer<span class="lw-status live">Live</span></span>
+      <span class="lw-tool-go">Open</span>
+      <span class="lw-tool-desc">How the MYP fits together across all eight subject groups: phases, criteria and year-level expectations in one view.</span>
+    </a>
+    <a class="lw-tool" href="https://topic.learningwaypoints.com">
+      <span class="lw-tool-icon">✦</span>
+      <span class="lw-tool-name">Topic Explorer<span class="lw-status beta">Beta</span></span>
+      <span class="lw-tool-go">Open</span>
+      <span class="lw-tool-desc">Type a topic, paste the prompt into your AI, and get back a map of it to plan from or explore with a class.</span>
+    </a>
+  </div>
+
+  <div class="lw-kitline">
+    <span>Prefer to work in your own AI?</span>
+    <a href="/getting-started/ask-your-ai/">The Kit does this without an app</a>
+  </div>
+</main>
+<footer id="lw-footer"></footer>
+<script src="/assets/site.js"></script>
+</body>
+</html>

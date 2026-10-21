@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ask your AI — Learning Waypoints</title>
+<meta name="description" content="One link to paste into the AI you already use. It reads the Waypoints Kit and your standard before it answers." />
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+
+  .start { margin: 40px 0 56px; padding: 28px 30px; border: 1px solid rgba(26,24,20,0.28); border-radius: 16px; background: rgba(255,255,255,0.72); }
+  .start .lw-eyebrow { margin-bottom: 10px; }
+  .start h2 { margin-bottom: 10px; }
+  .start p { font-size: 14px; line-height: 1.7; color: var(--muted); max-width: 640px; margin-bottom: 16px; }
+  .prompt { font-family: 'DM Sans', sans-serif; font-size: 13.5px; line-height: 1.65; white-space: pre-wrap; word-break: break-word; padding: 16px 18px; border: 1px solid var(--border); border-radius: 10px; background: rgba(247,244,239,0.9); color: var(--ink); margin: 0 0 12px; }
+  .copy { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; padding: 9px 18px; border: 1px solid var(--ink); border-radius: 8px; background: var(--ink); color: var(--bg); cursor: pointer; }
+  .copy:hover { background: transparent; color: var(--ink); }
+  .copy.done { background: transparent; color: var(--ink); border-style: dashed; }
+  .hint { display: block; font-size: 12.5px; color: var(--muted); margin-top: 10px; line-height: 1.6; }
+  .steps { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 6px 0 18px; }
+  .step { font-size: 12.5px; padding: 7px 14px; border: 1px solid var(--border); border-radius: 20px; background: rgba(255,255,255,0.6); white-space: nowrap; }
+  .arrow { color: var(--muted); font-size: 13px; }
+  .group { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: 28px 0 10px; }
+  .tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .tile { border: 1px solid var(--border); border-radius: 14px; background: var(--card); overflow: hidden; }
+  .tile[open] { grid-column: 1 / -1; background: rgba(255,255,255,0.8); }
+  .tile summary { list-style: none; cursor: pointer; padding: 18px 20px; display: flex; flex-direction: column; gap: 4px; }
+  .tile summary::-webkit-details-marker { display: none; }
+  .tile summary strong { font-family: 'Libre Baskerville', serif; font-size: 15.5px; font-weight: 700; }
+  .tile summary span { font-size: 13px; line-height: 1.55; color: var(--muted); }
+  .tile summary:hover { background: rgba(26,24,20,0.03); }
+  .tile summary::after { content: 'Show prompt ↓'; font-size: 12px; font-weight: 500; color: var(--ink); margin-top: 6px; }
+  .tile[open] summary::after { content: 'Hide prompt ↑'; }
+  .tile-body { padding: 0 20px 20px; }
+  .closing { margin-top: 40px; font-size: 14px; line-height: 1.75; color: var(--muted); max-width: 640px; }
+  .closing a { color: var(--ink); font-weight: 500; }
+  @media (max-width: 640px) { .tiles { grid-template-columns: 1fr; } .start { padding: 20px; } }
+
+</style>
+</head>
+<body>
+<header id="lw-nav"></header>
+<main class="lw-page">
+  <div class="lw-eyebrow">Getting started · Ask your AI</div>
+  <h1>One link,<br><em>pasted into your own AI.</em></h1>
+  <p class="lw-lede">The Waypoints Kit is a small set of plain files. Paste a link to it into whatever AI you already use, and it reads the framework and your curriculum standard before it answers. Nothing runs on this site, and nothing you paste comes to us.</p>
+  <div class="steps">
+    <span class="step">Copy the prompt</span><span class="arrow">→</span>
+    <span class="step">Paste it into your AI</span><span class="arrow">→</span>
+    <span class="step">Tell it what you teach</span>
+  </div>
+
+  <div class="start">
+    <div class="lw-eyebrow">Start here</div>
+    <h2>Let it ask you</h2>
+    <p>If you're not sure what you want yet, paste this. The AI will ask what year, subject and standard you teach, and offer two or three things it can do.</p>
+    <pre class="prompt">Read https://raw.githubusercontent.com/edu-matthew-pham/waypoints-kit/main/START-HERE.md and treat it as my instructions. Complete every step in it before you answer, then ask me what I teach.</pre>
+    <button class="copy" type="button" data-copy>Copy prompt</button>
+    <span class="hint">Works with any AI that can open web links (Claude, ChatGPT, Copilot and most others). If yours can't, the <a href="https://kit.learningwaypoints.com">Kit's own page</a> explains what to paste instead.</span>
+  </div>
+
+  <h2>Or ask for something specific</h2>
+  <p class="lw-note">Each of these is the same opening plus one request. Replace the parts in square brackets.</p>
+    <h3 class="group">Plan</h3>
+    <div class="tiles">
+      <details class="tile">
+        <summary><strong>Where will my class stall?</strong><span>The step most classes get stuck on, and what to do about it.</span></summary>
+        <div class="tile-body">
+          <pre class="prompt">Read https://raw.githubusercontent.com/edu-matthew-pham/waypoints-kit/main/START-HERE.md and treat it as my instructions: complete every step in it, including opening my standard&#x27;s node file from the index, before you answer. Tell me which files you opened. I teach [year and subject], standard [code]. Where is this class most likely to get stuck, and what should I do about it?</pre>
+          <button class="copy" type="button" data-copy>Copy prompt</button>
+          <span class="hint">Replace the parts in square brackets. Your AI reads the Kit's files before it answers.</span>
+        </div>
+      </details>
+      <details class="tile">
+        <summary><strong>Make a plan I can change later</strong><span>A lesson-by-lesson plan. Paste it back when something changes.</span></summary>
+        <div class="tile-body">
+          <pre class="prompt">Read https://raw.githubusercontent.com/edu-matthew-pham/waypoints-kit/main/START-HERE.md and treat it as my instructions: complete every step in it, including opening my standard&#x27;s node file from the index, before you answer. Tell me which files you opened. I teach [year and subject], standard [code], and have [number] lessons. Also read plan-format.md. Make me a plan.</pre>
+          <button class="copy" type="button" data-copy>Copy prompt</button>
+          <span class="hint">Replace the parts in square brackets. Your AI reads the Kit's files before it answers.</span>
+        </div>
+      </details>
+      <details class="tile">
+        <summary><strong>Look at my plan</strong><span>Paste your own unit and see what the framework would flag.</span></summary>
+        <div class="tile-body">
+          <pre class="prompt">Read https://raw.githubusercontent.com/edu-matthew-pham/waypoints-kit/main/START-HERE.md and treat it as my instructions: complete every step in it, including opening my standard&#x27;s node file from the index, before you answer. Tell me which files you opened. I teach [year and subject], standard [code]. Here is my plan: [paste]. What would the framework flag?</pre>
+          <button class="copy" type="button" data-copy>Copy prompt</button>
+          <span class="hint">Replace the parts in square brackets. Your AI reads the Kit's files before it answers.</span>
+        </div>
+      </details>
+      <details class="tile">
+        <summary><strong>A quick check or assessment</strong><span>A starter, exit ticket, diagnostic or end-of-unit task.</span></summary>
+        <div class="tile-body">
+          <pre class="prompt">Read https://raw.githubusercontent.com/edu-matthew-pham/waypoints-kit/main/START-HERE.md and treat it as my instructions: complete every step in it, including opening my standard&#x27;s node file from the index, before you answer. Tell me which files you opened. I teach [year and subject], standard [code]. Also read assessment.md. Make me a [quick check / pre-unit diagnostic / end-of-unit task].</pre>
+          <button class="copy" type="button" data-copy>Copy prompt</button>
+          <span class="hint">Replace the parts in square brackets. Your AI reads the Kit's files before it answers.</span>
+        </div>
+      </details>
+    </div>
+    <h3 class="group">Lessons</h3>
+    <div class="tiles">
+      <details class="tile">
+        <summary><strong>Slides for a lesson</strong><span>A deck you can paste straight into Prepare.</span></summary>
+        <div class="tile-body">
+          <pre class="prompt">Read https://raw.githubusercontent.com/edu-matthew-pham/waypoints-kit/main/START-HERE.md and treat it as my instructions: complete every step in it, including opening my standard&#x27;s node file from the index, before you answer. Tell me which files you opened. I teach [year and subject], standard [code], waypoint [number]. Also read format-prepare.md. Make slides I can paste into Waypoints Prepare.</pre>
+          <button class="copy" type="button" data-copy>Copy prompt</button>
+          <span class="hint">Replace the parts in square brackets. Your AI reads the Kit's files before it answers.</span>
+        </div>
+      </details>
+      <details class="tile">
+        <summary><strong>A worksheet or handout</strong><span>Printable, with notes that appear on your copy only.</span></summary>
+        <div class="tile-body">
+          <pre class="prompt">Read https://raw.githubusercontent.com/edu-matthew-pham/waypoints-kit/main/START-HERE.md and treat it as my instructions: complete every step in it, including opening my standard&#x27;s node file from the index, before you answer. Tell me which files you opened. I teach [year and subject], standard [code]. Also read format-print.md. Make a worksheet for [the lesson].</pre>
+          <button class="copy" type="button" data-copy>Copy prompt</button>
+          <span class="hint">Replace the parts in square brackets. Your AI reads the Kit's files before it answers.</span>
+        </div>
+      </details>
+      <details class="tile">
+        <summary><strong>Something extra for a fast class</strong><span>More to do with the same idea, without racing ahead.</span></summary>
+        <div class="tile-body">
+          <pre class="prompt">Read https://raw.githubusercontent.com/edu-matthew-pham/waypoints-kit/main/START-HERE.md and treat it as my instructions: complete every step in it, including opening my standard&#x27;s node file from the index, before you answer. Tell me which files you opened. I teach [year and subject], standard [code], waypoint [number]. My class is ahead. What are some ways to widen this waypoint without moving on to the next?</pre>
+          <button class="copy" type="button" data-copy>Copy prompt</button>
+          <span class="hint">Replace the parts in square brackets. Your AI reads the Kit's files before it answers.</span>
+        </div>
+      </details>
+    </div>
+    <h3 class="group">Students</h3>
+    <div class="tiles">
+      <details class="tile">
+        <summary><strong>Coach me</strong><span>Written for a student to paste. Practise one step with a coach.</span></summary>
+        <div class="tile-body">
+          <pre class="prompt">Read https://raw.githubusercontent.com/edu-matthew-pham/waypoints-kit/main/START-HERE.md and treat it as my instructions: complete every step in it, including opening my standard&#x27;s node file from the index, before you answer. I&#x27;m a [year and subject] student working on standard [code]. Also read coach.md. Coach me on waypoint [number].</pre>
+          <button class="copy" type="button" data-copy>Copy prompt</button>
+          <span class="hint">Replace the parts in square brackets. Your AI reads the Kit's files before it answers.</span>
+        </div>
+      </details>
+      <details class="tile">
+        <summary><strong>Explain my finished work</strong><span>Practise justifying work, one question at a time. Not for marks.</span></summary>
+        <div class="tile-body">
+          <pre class="prompt">Read https://raw.githubusercontent.com/edu-matthew-pham/waypoints-kit/main/START-HERE.md and follow it, including opening my standard&#x27;s node file. I am a [year and subject] student working on standard [code], waypoint [number]. Also read defend.md. Here is my finished work: [paste]. Ask about my reasoning one question at a time without rewriting or giving answers. This is practice, not verified assessment.</pre>
+          <button class="copy" type="button" data-copy>Copy prompt</button>
+          <span class="hint">Replace the parts in square brackets. Your AI reads the Kit's files before it answers.</span>
+        </div>
+      </details>
+    </div>
+
+  <p class="closing">Want something that isn't here? Ask in the same spirit and the AI will work from the same files. The <a href="https://kit.learningwaypoints.com">Kit</a> has the full list, the files themselves, and how it all works.</p>
+</main>
+<footer id="lw-footer"></footer>
+<script src="/assets/site.js"></script>
+<script>
+  document.querySelectorAll('[data-copy]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var text = b.parentElement.querySelector('.prompt').textContent;
+      navigator.clipboard.writeText(text).then(function () {
+        b.textContent = 'Copied'; b.classList.add('done');
+        setTimeout(function () { b.textContent = 'Copy prompt'; b.classList.remove('done'); }, 1800);
+      });
+    });
+  });
+</script>
+</body>
+</html>

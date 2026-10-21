@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Walk the loop — Learning Waypoints</title>
+<meta name="description" content="A short tour of Learning Waypoints: Curriculum, Plan and Lessons, with one thing to try in each." />
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+
+  .zone { margin: 0 0 56px; }
+  .zone-kicker { display: flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .zone-kicker::before { content: ''; width: 6px; height: 6px; border-radius: 50%; border: 2px solid var(--muted); display: inline-block; }
+  .zone-kicker a { color: inherit; text-decoration: none; }
+  .zone h2 a { color: inherit; text-decoration: none; }
+  .zone-frame { font-size: 14.5px; line-height: 1.75; color: var(--muted); max-width: 640px; margin-bottom: 26px; }
+  .tool-note { border-left: 2px solid var(--border); padding: 4px 0 4px 22px; margin-bottom: 26px; }
+  .tool-note h3 { font-family: 'Libre Baskerville', serif; font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+  .tool-note h3 .icon { font-size: 15px; margin-right: 8px; }
+  .tool-note p { font-size: 14px; line-height: 1.75; color: var(--muted); max-width: 600px; margin-bottom: 8px; }
+  .tool-note .try { font-size: 13px; color: var(--muted); margin-top: 12px; line-height: 1.6; }
+  .try-btn { display: inline-block; font-size: 12px; font-weight: 500; color: var(--ink); border: 1px solid var(--border); border-radius: 20px; padding: 6px 16px; text-decoration: none; margin-top: 8px; }
+  .try-btn:hover { background: rgba(26,24,20,0.06); }
+  .try-btn::after { content: ' →'; }
+  .workflow { border: 1px solid var(--border); border-radius: 16px; background: rgba(255,255,255,0.5); padding: 32px 36px; margin: 0 0 56px; }
+  .workflow h2 { font-size: 22px; margin-bottom: 14px; }
+  .workflow p { font-size: 14px; line-height: 1.75; color: var(--muted); max-width: 640px; margin-bottom: 12px; }
+  .workflow p:last-child { margin-bottom: 0; }
+  .workflow strong { color: var(--ink); font-weight: 500; }
+  .workflow-steps { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 16px 0 20px; }
+  .wf-step { font-size: 13px; padding: 8px 16px; border: 1px solid var(--border); border-radius: 20px; background: rgba(255,255,255,0.6); white-space: nowrap; }
+  .wf-arrow { color: var(--muted); font-size: 13px; }
+  @media (max-width: 640px) { .workflow { padding: 22px 18px; } .tool-note { padding-left: 16px; } }
+
+</style>
+</head>
+<body>
+<header id="lw-nav"></header>
+<main class="lw-page">
+  <div class="lw-eyebrow">Getting started · Walk the loop</div>
+  <h1>Three parts,<br><em>one sequence.</em></h1>
+  <p class="lw-lede">Unpack the curriculum, plan units, and teach from a curated library of lessons, or make your own. ACARA sets the expectations for what Australian students should be taught. Learning Waypoints maps the incremental steps to get there, in the order they're best learned. Every tool below works on its own, so start wherever the problem in front of you is. This page walks the three parts in order, with one thing to try in each.</p>
+  <span class="lw-tag" style="margin-bottom:48px">About ten minutes · No account required</span>
+
+  <div class="zone">
+    <div class="zone-kicker"><a href="/curriculum/">1 · Curriculum</a></div>
+    <h2><a href="/curriculum/">See where students need to get to, and the steps along the way</a></h2>
+    <p class="zone-frame">A standard names the destination. These tools show the steps, and what students should already know when they arrive.</p>
+    <div class="tool-note">
+      <h3><span class="icon">◎</span>ACARA Progressions</h3>
+      <p>Every ACARA standard, Foundation to Year 10, broken into the steps students learn in order. Open a standard and you'll see the steps, which earlier standards it builds on, and how much room there is to go wider at each one.</p>
+      <p class="try">Pick a subject and year you know well. Open a standard and look at how it's broken down. Does the order match how you'd teach it?</p>
+      <a class="try-btn" href="https://acara.learningwaypoints.com">Open ACARA Progressions</a>
+    </div>
+
+    <div class="tool-note">
+      <h3><span class="icon">◈</span>MYP Explorer</h3>
+      <p>The MYP isn't built from standards the way ACARA is, so this one shows how the framework fits together instead: phases, criteria and year-level expectations across all eight subject groups.</p>
+      <p class="try">Choose a subject group you teach and explore its progression wheel.</p>
+      <a class="try-btn" href="https://myp.learningwaypoints.com">Open MYP Explorer</a>
+    </div>
+
+    <div class="tool-note">
+      <h3><span class="icon">✦</span>Topic Explorer</h3>
+      <p>Type a topic and Topic Explorer writes you a prompt. Paste it into your AI, paste the result back, and you have a map of the topic: clusters, nodes, quizzes, matching activities. Use it to see the terrain before you plan, or project it and explore it with a class.</p>
+      <p class="try">Type a topic you're teaching next term, even one you haven't taught before. Ten minutes, start to finish.</p>
+      <a class="try-btn" href="https://topic.learningwaypoints.com">Open Topic Explorer</a>
+    </div>
+  </div>
+
+  <div class="zone">
+    <div class="zone-kicker"><a href="/plan/">2 · Plan</a></div>
+    <h2><a href="/plan/">One unit for all your classes</a></h2>
+    <p class="zone-frame">The deep end. The Planner takes the sequence you saw in Curriculum and turns it into a whole unit. Signal and Insight sit around it, during and after.</p>
+    <div class="tool-note">
+      <h3><span class="icon">⬡</span>Planner</h3>
+      <p>Pick a standard, check the sequence, and build the unit from it: lesson plans, the resources each lesson needs, a student glossary, slides and handouts ready for Prepare, and lesson cards you can paste into your LMS. Everything comes from the one sequence, so it lines up.</p><p>When classes move at different speeds, the Planner changes the <strong>width</strong> rather than the pace: a faster class does more with each idea instead of racing on to the next one. That's the idea the whole suite is built on.</p>
+      <p class="try">Take a standard you looked at in ACARA Progressions and open the Planner with it.</p>
+      <a class="try-btn" href="https://planner.learningwaypoints.com">Open Planner</a>
+    </div>
+
+    <div class="tool-note">
+      <h3><span class="icon">◉</span>Signal</h3>
+      <p>Students say how confident they feel at each step, before, during or after a lesson, and you see where every class is. No student accounts; they type in a class code.</p>
+      <p class="try">Start a session and put the code on the board. Students join straight away.</p>
+      <a class="try-btn" href="https://signal.learningwaypoints.com/teacher">Open Signal</a>
+    </div>
+
+    <div class="tool-note">
+      <h3><span class="icon">◐</span>Insight</h3>
+      <p>After students work through a Topic Explorer session, export the summary and Insight sorts their thinking: what's on track, what's a misconception, what's new, and which misconceptions to pick up with the whole class tomorrow.</p>
+      <p class="try">Run a Topic Explorer coaching session first, then bring its summary here.</p>
+      <a class="try-btn" href="https://insight.learningwaypoints.com">Open Insight</a>
+    </div>
+  </div>
+
+  <div class="zone">
+    <div class="zone-kicker"><a href="/lessons/">3 · Lessons</a></div>
+    <h2><a href="/lessons/">Teach from the library, or make your own</a></h2>
+    <p class="zone-frame">What students and teachers actually use in the room. Tutorials is the library; Prepare and Audio are for making your own.</p>
+    <div class="tool-note">
+      <h3><span class="icon">▤</span>Tutorials</h3>
+      <p>Short interactive lessons in coding, maths, science, engineering, digital systems and AI, run in the browser. Students predict, try, and check as they go. Every lesson has notes for the teacher, written for anyone, not just specialists, plus slides and answers. Teachers can write their own or request one.</p>
+      <p class="try">Open a subject, pick a lesson at the start of a trail, and work through it as a student would.</p>
+      <a class="try-btn" href="https://tutorials.learningwaypoints.com">Open Tutorials</a>
+    </div>
+
+    <div class="tool-note">
+      <h3><span class="icon">▦</span>Prepare</h3>
+      <p>Describe your lesson and Prepare writes a prompt that generates the deck. Paste the result back and edit it with the slides beside you. The same text lays out as a worksheet too, with lines to write on, blanks to fill, and notes that appear on your copy only. Present from the browser, or export to PowerPoint, PDF or Google Docs.</p>
+      <p class="try">Load the sample to see how it feels, then try the Generate tab with a lesson of your own.</p>
+      <a class="try-btn" href="https://prepare.learningwaypoints.com">Open Prepare</a>
+    </div>
+
+    <div class="tool-note">
+      <h3><span class="icon">♬</span>Audio</h3>
+      <p>Study audio that follows your unit: one episode per step, each in the mode that fits, an explanation, a worked example, two experts debating, recall practice. Made in your browser, exported as MP3s.</p>
+      <p class="try">Best after you've seen a sequence in the Planner or ACARA Progressions. The episodes map to it directly.</p>
+      <a class="try-btn" href="https://audio.learningwaypoints.com">Open Audio</a>
+    </div>
+  </div>
+
+  <div class="workflow">
+    <h2>One pattern, everywhere</h2>
+    <div class="workflow-steps">
+      <span class="wf-step">The tool builds a prompt</span><span class="wf-arrow">→</span>
+      <span class="wf-step">You paste it into your AI</span><span class="wf-arrow">→</span>
+      <span class="wf-step">You paste the result back</span>
+    </div>
+    <p>Every tool that generates something works this way, and it's on purpose. <strong>Your content never touches our servers.</strong> There are no accounts, nothing is stored, and you use whichever AI your school already trusts. The tool's job is to write you a much better prompt than you would by hand: one that knows the curriculum, the structure, and the format it expects back.</p>
+    <p>Once you've done it in one tool, you've done it in all of them. And if you'd rather skip the tools and work in your AI directly, that's what <a href="/getting-started/ask-your-ai/" style="color:var(--ink);font-weight:500">Ask your AI</a> is for.</p>
+  </div>
+
+  <h2>The idea behind it</h2>
+  <p class="lw-note">What connects every tool is one idea: a <strong>waypoint</strong>, one step on the path through a topic, in the order the steps are best learned. The Planner sequences waypoints for a unit. Prepare builds the slides and handouts for them. Tutorials teach them. Signal checks confidence on them. Insight sorts thinking against them. Audio narrates them. Because every tool speaks the same language, what you do in one carries into the others.</p>
+  <p class="lw-note"><a href="/philosophy/">Read the philosophy →</a></p>
+</main>
+<footer id="lw-footer"></footer>
+<script src="/assets/site.js"></script>
+
+</body>
+</html>
