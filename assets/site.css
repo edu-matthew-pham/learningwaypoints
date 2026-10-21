@@ -105,6 +105,16 @@
   .lw-footer { padding: 32px 20px 24px; }
 }
 
+/* ---------- Getting Started: where to begin ---------- */
+
+.lw-where { margin: 8px 0 24px; }
+.lw-where h2 { margin-bottom: 16px; }
+.lw-where ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; max-width: 700px; }
+.lw-where li { font-size: 15px; line-height: 1.7; color: var(--muted); padding-left: 18px; border-left: 2px solid var(--border); }
+.lw-where li strong { color: var(--ink); font-weight: 500; }
+.lw-where li a { color: var(--ink); font-weight: 500; text-decoration: underline; text-decoration-color: rgba(26,24,20,0.3); text-underline-offset: 3px; }
+.lw-where li a:hover { text-decoration-color: var(--ink); }
+
 /* ---------- landing pages (Curriculum, Plan, Lessons, Getting Started) ---------- */
 
 .lw-page { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; padding: 120px 24px 96px; font-family: 'DM Sans', sans-serif; color: var(--ink); }
