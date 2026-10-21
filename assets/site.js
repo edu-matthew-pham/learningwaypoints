@@ -35,7 +35,8 @@
       ['Topic Explorer', 'https://topic.learningwaypoints.com']
     ]},
     { group: 'Plan', items: [
-      ['Planner', 'https://planner.learningwaypoints.com']
+      ['Planner', 'https://planner.learningwaypoints.com'],
+      ['Waypoints Kit', '/getting-started/ask-your-ai/']
     ]},
     { group: 'Lessons', items: [
       ['Tutorials', 'https://tutorials.learningwaypoints.com'],
@@ -44,10 +45,6 @@
       ['Formative assessment'],
       ['Signal', 'https://signal.learningwaypoints.com/teacher'],
       ['Insight', 'https://insight.learningwaypoints.com']
-    ]},
-    { group: 'Prompts for your AI', items: [
-      ['Waypoints Kit', 'https://kit.learningwaypoints.com'],
-      ['Ask your AI', '/getting-started/ask-your-ai/']
     ]}
   ];
 
