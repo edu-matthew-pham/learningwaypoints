@@ -15,7 +15,8 @@
       { label: 'Topic Explorer', href: 'https://topic.learningwaypoints.com' }
     ]},
     { label: 'Plan', href: '/plan/', items: [
-      { label: 'Planner', href: 'https://planner.learningwaypoints.com' }
+      { label: 'Planner', href: 'https://planner.learningwaypoints.com' },
+      { label: 'Plan with your own AI', href: '/getting-started/ask-your-ai/' }
     ]},
     { label: 'Lessons', href: '/lessons/', items: [
       { label: 'Tutorials', href: 'https://tutorials.learningwaypoints.com' },
